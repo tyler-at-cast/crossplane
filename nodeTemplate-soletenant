@@ -1,0 +1,38 @@
+apiVersion: castai.upbound.io/v1alpha1
+kind: NodeTemplate
+metadata:
+  name: st-test-tmpl
+spec:
+  forProvider:
+    clusterId: "9adbf1ce-0c97-44fb-908b-35639039acdf"
+    constraints:
+    - architectures:
+      - amd64
+      computeOptimizedState: disabled
+      enableSpotDiversity: true
+      fallbackRestoreRateSeconds: 1800
+      onDemand: false
+      spot: true
+      spotDiversityPriceIncreaseLimitPercent: 10
+      useSpotFallbacks: true
+      dedicatedNodeAffinity:
+      - affinity: 
+        -  key: "compute.googleapis.com/project"
+           operator: "In"
+           values: 
+           - "demos-321800"
+        -  key: "compute.googleapis.com/node-group-name"
+           operator: "In"
+           values: 
+           - "tw-soletenant-tst"
+        name: "tw-soletenant-tst"
+        azName: "us-central1-c"
+        instanceTypes: ["n2d-node-224-896"]
+    customInstancesEnabled: true
+    customLabels: {template: sole-tenant}
+    isDefault: false
+    isEnabled: true
+    name: soletenant-template
+    shouldTaint: false
+  providerConfigRef:
+    name: default
