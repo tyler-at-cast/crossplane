@@ -10,6 +10,7 @@ spec:
       - amd64
       computeOptimizedState: disabled
       enableSpotDiversity: true
+      maxCpu: 8
       fallbackRestoreRateSeconds: 1800
       onDemand: false
       spot: true
